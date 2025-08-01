@@ -1,2 +1,0 @@
-2025-07-19 12:21:05,970 - ope - INFO - Received prediction request: {'Vegetation': 'Dense', 'Urbanization': 'Medium', 'Drainage': 'Moderate', 'Slope': 'Steep', 'StormFrequency': 'Occasional', 'Deforestation': 'Missing', 'Infrastructure': 'Strong', 'Encroachment': 'Severe', 'Season': 'Transition', 'Soil': 'Rocky', 'Wetlands': 'Present', 'ProximityToWaterBody': 'Close to dam', 'Rainfall': 10000.0, 'Elevation': 1000.0}
-2025-07-19 12:21:17,011 - ope - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1x54 and 52x128)
