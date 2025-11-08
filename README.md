@@ -53,12 +53,12 @@ The project uses a custom dataset (`flood_risk_dataset_final.csv`) with the foll
 
 1. **Install dependencies**:
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirement.txt
    ```
 
 2. **Run the script**:
    ```bash
-   python cmodel_1.py
+   python main.py
    ```
 
 ## How It Works
@@ -72,35 +72,75 @@ The script performs the following steps:
 5. **Interactive Prediction**: Enters loop for real-time flood risk predictions
 
 The best model weights are automatically saved as `best_floodnet_model.pth`.
+Please select an option:
+1. Start Model Training (via main.py)
+2. Start New Prediction (Interactive)
+3. Exit Application
 
-## Interactive Example
+Enter your choice (1, 2, or 3): 1 
 
-```
-🌊 FLOOD RISK PREDICTION SYSTEM 🌊
-📋 Valid options for each feature:
-Vegetation: Dense, Sparse, Moderate, Missing
-Urbanization: Low, Medium, High, Missing
-…
+[SYSTEM MESSAGE] Starting training pipeline...
+
+Epoch 1/40
+Batch [ 10/100] Loss: 0.691
+Batch [ 20/100] Loss: 0.685
+...
+Epoch 40/40
+Training Complete.
+Model checkpoint saved to: best_floodnet_model.pth
+
+--- 🌊 FLOOD RISK PREDICTION SYSTEM 🌊 ---
+... (Menu repeats, user selects 3 to)
+
+
+3. Scenario 2: Option 2 (Make Interactive Prediction)
+This is the flow that requires feature input.
+
+--- 🌊 FLOOD RISK PREDICTION SYSTEM 🌊 ---
+
+Please select an option:
+1. Start Model Training (via main.py)
+2. Start New Prediction (Interactive)
+3. Exit Application
+
+Enter your choice (1, 2, or 3): 2
+
+[SYSTEM MESSAGE] Loading best_floodnet_model.pth... ✅ Model ready.
+
+✅ Valid options for each feature:
+   Vegetation: Dense, Sparse, Moderate, Missing
+   Urbanization: Low, Medium, High, Missing
 
 Enter environmental details to predict flood risk:
 (Type 'help' to see valid options for any field)
 
 Vegetation: Dense
 Urbanization: Low
-…
+---
 Rainfall (numeric): 50
 Elevation (numeric): 100
 
-🌊 Predicted Flood Risk Level: Low
-📊 Confidence: 92.3%
-📈 Risk Breakdown:
-  Low: 92.3%
-  Medium: 6.5%
-  High: 1.2%
+⏳ Processing input and calculating risk...
+---
+✅ Predicted Flood Risk Level: Low
+   Confidence: 92.3%
+   Risk Breakdown: [Shows feature contribution to the prediction]
 
-Would you like to predict again? (Yes/No): No
-Goodbye! 👋
-```
+--- 🌊 FLOOD RISK PREDICTION SYSTEM 🌊 ---
+... (Menu repeats, user selects 3 to exit)
+4. Scenario 3: Option 3 (Exit)
+This is the simple exit flow.
+
+--- 🌊 FLOOD RISK PREDICTION SYSTEM 🌊 ---
+
+Please select an option:
+1. Start Model Training (via main.py)
+2. Start New Prediction (Interactive)
+3. Exit Application
+
+Enter your choice (1, 2, or 3): 3
+
+[SYSTEM MESSAGE] Exiting application. Goodbye!
 
 ### Tips for Interactive Mode
 - Type `help` during input prompts to see valid options for categorical features
@@ -132,13 +172,17 @@ The model uses weighted F1 score for evaluation to handle class imbalance effect
 
 ## File Structure
 
-```
-flood-risk-prediction/
-├── cmodel_1.py              # Main script
-├── flood_risk_dataset_final.csv  # Dataset
-├── requirements.txt         # Dependencies
-├── best_floodnet_model.pth  # Saved model weights (generated)
-└── README.md               # This file
+```neural_network/
+├── data/                             # Stores your input CSV data
+├── src/
+│   ├── data_preprocessing.py         # Data cleaning and feature encoding
+│   ├── dataset.py                    # Defines PyTorch Dataset and DataLoader
+│   ├── model.py                      # Contains the FloodNet(nn.Module) class
+│   ├── train.py                      # Main training loop (calls train_model)
+│   └── predict.py                    # (Optional) Separate script for final evaluation/prediction
+├── main.py                           # The primary script to run training
+├── requirement.txt                   # Dependency list
+└── best_floodnet_model.pth
 ```
 
 ## Contributing
